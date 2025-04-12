@@ -1,8 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "src\Web\Web.csproj", "{32EEB7D0-F797-4B51-BFF8-5F8026A69F2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65E2BF9D-F911-42F6-822F-4C26A0524961}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32EEB7D0-F797-4B51-BFF8-5F8026A69F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32EEB7D0-F797-4B51-BFF8-5F8026A69F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32EEB7D0-F797-4B51-BFF8-5F8026A69F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32EEB7D0-F797-4B51-BFF8-5F8026A69F2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
