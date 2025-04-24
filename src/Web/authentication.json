@@ -1,0 +1,48 @@
+{
+    "platform": {
+        "enabled": true,
+        "runtimeVersion": "~2"
+    },
+    "globalValidation": {
+        "unauthenticatedClientAction": "RedirectToLoginPage",
+        "redirectToProvider": "apple"
+    },
+    "identityProviders": {
+        "apple": {
+            "enabled": true,
+            "registration": {
+                "clientId": "com.yourcompany.locasso",
+                "clientSecretSettingName": "APPLE_GENERATED_CLIENT_SECRET"
+            },
+            "login": {
+                "scopes": ["name", "email"]
+            }
+        },
+        "google": {
+            "enabled": true,
+            "registration": {
+                "clientId": "YOUR_GOOGLE_CLIENT_ID",
+                "clientSecretSettingName": "GOOGLE_CLIENT_SECRET"
+            },
+            "login": {
+                "scopes": ["profile", "email"]
+            }
+        }
+    },
+    "login": {
+        "tokenStore": {
+            "enabled": true,
+            "tokenRefreshExtensionHours": 72
+        },
+        "preserveUrlFragmentsForLogins": true,
+        "routes": {
+            "logoutEndpoint": "/.auth/logout"
+        }
+    },
+    "httpSettings": {
+        "requireHttps": true,
+        "forwardProxies": {
+            "requireForwardedHostHeader": false
+        }
+    }
+} 
