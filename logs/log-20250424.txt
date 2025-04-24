@@ -1,0 +1,62 @@
+2025-04-24 20:44:29.070 +00:00 [INF] Starting Locasso API
+2025-04-24 20:44:29.146 +00:00 [WRN] Storing keys in a directory '/home/app/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed. For more information go to https://aka.ms/aspnet/dataprotectionwarning
+2025-04-24 20:44:29.153 +00:00 [WRN] No XML encryptor configured. Key {d6b3ee1d-821f-4134-a119-58cfaf6b63e9} may be persisted to storage in unencrypted form.
+2025-04-24 20:44:29.157 +00:00 [WRN] Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080;https://+:8081'.
+2025-04-24 20:44:29.179 +00:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-04-24 20:44:29.184 +00:00 [FTL] Application terminated unexpectedly
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /src/src/Web/Program.cs:line 85
+2025-04-24 20:47:15.565 +00:00 [INF] Starting Locasso API
+2025-04-24 20:47:15.639 +00:00 [WRN] Storing keys in a directory '/home/app/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed. For more information go to https://aka.ms/aspnet/dataprotectionwarning
+2025-04-24 20:47:15.647 +00:00 [WRN] No XML encryptor configured. Key {da0bb506-a124-473a-b705-9c7d91af73ac} may be persisted to storage in unencrypted form.
+2025-04-24 20:47:15.651 +00:00 [WRN] Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
+2025-04-24 20:47:15.669 +00:00 [INF] Now listening on: http://[::]:8080
+2025-04-24 20:47:15.669 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-24 20:47:15.669 +00:00 [INF] Hosting environment: Development
+2025-04-24 20:47:15.669 +00:00 [INF] Content root path: /app
+2025-04-24 20:47:58.214 +00:00 [INF] HTTP GET /swagger/v1 responded 404 in 24.3353 ms
+2025-04-24 20:48:03.857 +00:00 [INF] HTTP GET /swagger/v1swagger responded 404 in 1.9367 ms
+2025-04-24 20:48:19.821 +00:00 [INF] Running authentication diagnostic
+2025-04-24 20:48:19.824 +00:00 [INF] Authentication diagnostic completed
+2025-04-24 20:48:19.835 +00:00 [INF] HTTP GET /api/auth/diagnostic responded 200 in 21.2225 ms
+2025-04-24 20:49:11.106 +00:00 [INF] Application is shutting down...
+2025-04-24 20:49:15.995 +00:00 [INF] Starting Locasso API
+2025-04-24 20:49:16.071 +00:00 [WRN] Storing keys in a directory '/home/app/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed. For more information go to https://aka.ms/aspnet/dataprotectionwarning
+2025-04-24 20:49:16.081 +00:00 [WRN] Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
+2025-04-24 20:49:16.095 +00:00 [INF] Now listening on: http://[::]:8080
+2025-04-24 20:49:16.095 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-24 20:49:16.096 +00:00 [INF] Hosting environment: Development
+2025-04-24 20:49:16.098 +00:00 [INF] Content root path: /app
+2025-04-24 21:11:45.424 +00:00 [INF] Application is shutting down...
+2025-04-24 21:16:50.798 +00:00 [INF] Starting Locasso API
+2025-04-24 21:16:50.864 +00:00 [WRN] Storing keys in a directory '/home/app/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed. For more information go to https://aka.ms/aspnet/dataprotectionwarning
+2025-04-24 21:16:50.870 +00:00 [WRN] No XML encryptor configured. Key {8377f5d2-5d2e-41c4-8ccd-ac739ed97ff3} may be persisted to storage in unencrypted form.
+2025-04-24 21:16:50.874 +00:00 [WRN] Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
+2025-04-24 21:16:50.889 +00:00 [INF] Now listening on: http://[::]:8080
+2025-04-24 21:16:50.889 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-24 21:16:50.889 +00:00 [INF] Hosting environment: Development
+2025-04-24 21:16:50.890 +00:00 [INF] Content root path: /app
+2025-04-24 21:16:57.491 +00:00 [INF] Application is shutting down...
