@@ -37,6 +37,8 @@ namespace Web.Controllers
                     return BadRequest("Missing required user claims.");
                 }
                 _logger.LogInformation("🔐 User authenticated: UserId={UserId}, Identity={Identity}", userId, Identity);
+                _logger.LogInformation("🔐 User claims: Name={Name}, Email={Email}, Idp={Idp}", name, email, idp);
+                
                 // var command = new AuthenticateUserCommand
                 // {
                 //     UserId = userId,
