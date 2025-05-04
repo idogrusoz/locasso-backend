@@ -37,12 +37,6 @@ try
 {
     Log.Information("Starting Locasso API");
 
-    // Add services to the container
-    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAdB2C"));
-
-    builder.Services.AddAuthorization();
-
     // Add MediatR
     builder.Services.AddMediatR(cfg => 
         cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
