@@ -70,12 +70,6 @@ try
         options.MessageTemplate = "HTTP {RequestMethod} {RequestPath} responded {StatusCode} in {Elapsed:0.0000} ms";
     });
 
-    // Add custom auth logging middleware
-    app.UseAuthLogging();
-
-    app.UseAuthentication();
-    app.UseAuthorization();
-
     app.MapControllers();
 
     app.Run();
