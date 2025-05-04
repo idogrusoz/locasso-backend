@@ -64,9 +64,6 @@ try
     {
         options.MessageTemplate = "HTTP {RequestMethod} {RequestPath} responded {StatusCode} in {Elapsed:0.0000} ms";
     });
-
-    // Authentication and authorization will be handled by Azure App Service
-
     app.MapControllers();
 
     app.Run();
