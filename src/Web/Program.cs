@@ -1,11 +1,6 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Identity.Web;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using MediatR;
 using Web.Infrastructure.Data;
-using Web.Infrastructure.Middleware;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
@@ -69,6 +64,8 @@ try
     {
         options.MessageTemplate = "HTTP {RequestMethod} {RequestPath} responded {StatusCode} in {Elapsed:0.0000} ms";
     });
+
+    // Authentication and authorization will be handled by Azure App Service
 
     app.MapControllers();
 
