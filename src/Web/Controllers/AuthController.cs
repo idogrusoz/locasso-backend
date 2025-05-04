@@ -19,7 +19,6 @@ namespace Web.Controllers
             _logger = logger;
         }
 
-        [Authorize]
         [HttpPost("signin")]
         public async Task<ActionResult<AuthenticateUserResult>> SignIn()
         {
@@ -27,31 +26,30 @@ namespace Web.Controllers
             {
                 _logger.LogInformation("🔐 Processing authenticated SignIn");
 
-                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? User.FindFirst("sub")?.Value;
-                var email = User.FindFirst(ClaimTypes.Email)?.Value ?? User.FindFirst("email")?.Value;
-                var name = User.FindFirst(ClaimTypes.Name)?.Value ?? User.FindFirst("name")?.Value;
-                var photoUrl = User.FindFirst("picture")?.Value ?? string.Empty;
-                var idp = User.FindFirst("idp")?.Value ?? "unknown";
-
-                if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(email))
+                var userId = Request.Headers["x-ms-client-principal-id"];
+                var Identity = Request.Headers["x-ms-client-principal"];
+                var name = Request.Headers["x-ms-client-principal-name"];
+                var email = Request.Headers["x-ms-client-principal-email"];
+                var idp = Request.Headers["x-ms-client-principal-idp"];
+                if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(Identity))
                 {
                     _logger.LogWarning("❌ Missing essential user claims");
                     return BadRequest("Missing required user claims.");
                 }
+                _logger.LogInformation("🔐 User authenticated: UserId={UserId}, Identity={Identity}", userId, Identity);
+                // var command = new AuthenticateUserCommand
+                // {
+                //     UserId = userId,
+                //     Email = email,
+                //     Name = name ?? string.Empty,
+                //     PhotoUrl = photoUrl,
+                //     AuthProvider = idp
+                // };
 
-                var command = new AuthenticateUserCommand
-                {
-                    UserId = userId,
-                    Email = email,
-                    Name = name ?? string.Empty,
-                    PhotoUrl = photoUrl,
-                    AuthProvider = idp
-                };
+                // var result = await _mediator.Send(command);
+                // _logger.LogInformation("✅ User authenticated: IsNew={IsNew}, Role={Role}", result.IsNewUser, result.Role);
 
-                var result = await _mediator.Send(command);
-                _logger.LogInformation("✅ User authenticated: IsNew={IsNew}, Role={Role}", result.IsNewUser, result.Role);
-
-                return Ok(result);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -60,7 +58,6 @@ namespace Web.Controllers
             }
         }
 
-        [Authorize]
         [HttpGet("me")]
         public ActionResult GetCurrentUser()
         {
