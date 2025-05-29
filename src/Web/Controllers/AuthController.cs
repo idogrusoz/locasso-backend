@@ -31,31 +31,61 @@ namespace Web.Controllers
                 var name = Request.Headers["x-ms-client-principal-name"];
                 var email = Request.Headers["x-ms-client-principal-email"];
                 var idp = Request.Headers["x-ms-client-principal-idp"];
+                
                 if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(Identity))
                 {
                     _logger.LogWarning("❌ Missing essential user claims");
                     return BadRequest("Missing required user claims.");
                 }
+                
                 _logger.LogInformation("🔐 User authenticated: UserId={UserId}, Identity={Identity}", userId, Identity);
                 _logger.LogInformation("🔐 User claims: Name={Name}, Email={Email}, Idp={Idp}", name, email, idp);
                 
-                // var command = new AuthenticateUserCommand
-                // {
-                //     UserId = userId,
-                //     Email = email,
-                //     Name = name ?? string.Empty,
-                //     PhotoUrl = photoUrl,
-                //     AuthProvider = idp
-                // };
+                var command = new AuthenticateUserCommand
+                {
+                    UserId = userId,
+                    Email = email.ToString() ?? string.Empty,
+                    Name = name.ToString() ?? string.Empty,
+                    PhotoUrl = string.Empty, // Azure headers don't typically include photo URL
+                    AuthProvider = idp.ToString() ?? "unknown"
+                };
 
-                // var result = await _mediator.Send(command);
-                // _logger.LogInformation("✅ User authenticated: IsNew={IsNew}, Role={Role}", result.IsNewUser, result.Role);
+                var result = await _mediator.Send(command);
+                _logger.LogInformation("✅ User authenticated: IsNew={IsNew}, Role={Role}", result.IsNewUser, result.Role);
 
-                return Ok();
+                return Ok(result);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "⚠️ Error during SignIn");
+                return StatusCode(500, "Authentication failed.");
+            }
+        }
+
+        [HttpPost("signin/dev")]
+        public async Task<ActionResult<AuthenticateUserResult>> DevSignIn([FromBody] DevSignInRequest request)
+        {
+            try
+            {
+                _logger.LogInformation("🔐 Processing development SignIn for user: {UserId}", request.Id);
+                
+                var command = new AuthenticateUserCommand
+                {
+                    UserId = request.Id,
+                    Email = request.Email,
+                    Name = request.Name ?? string.Empty,
+                    PhotoUrl = request.PhotoUrl ?? string.Empty,
+                    AuthProvider = request.AuthProvider
+                };
+
+                var result = await _mediator.Send(command);
+                _logger.LogInformation("✅ User authenticated in dev mode: IsNew={IsNew}, Role={Role}", result.IsNewUser, result.Role);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "⚠️ Error during development SignIn");
                 return StatusCode(500, "Authentication failed.");
             }
         }
@@ -103,5 +133,14 @@ namespace Web.Controllers
 
             return value;
         }
+    }
+
+    public class DevSignInRequest
+    {
+        public required string Id { get; set; }
+        public required string Email { get; set; }
+        public string? Name { get; set; }
+        public string? PhotoUrl { get; set; }
+        public required string AuthProvider { get; set; }
     }
 }
