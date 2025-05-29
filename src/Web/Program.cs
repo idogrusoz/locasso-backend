@@ -49,6 +49,23 @@ try
 
     var app = builder.Build();
 
+    // Ensure database is created and migrations are applied
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        try
+        {
+            Log.Information("🗄️ Ensuring database is created and up to date...");
+            context.Database.Migrate();
+            Log.Information("✅ Database migrations completed successfully");
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "❌ Error applying database migrations");
+            throw;
+        }
+    }
+
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
